@@ -19,7 +19,7 @@ Avant de commencer, assurez-vous d'avoir installé les outils suivants :
 Cloner le projet à partir du dépôt Git :
 
 ```bash
-git clone https://github.com/hugo-brb/CarnetStage.git
+git clone --recursive https://github.com/hugo-brb/CarnetStage.git
 cd carnet-stage
 ```
 
