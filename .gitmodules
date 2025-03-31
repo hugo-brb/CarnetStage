@@ -1,0 +1,6 @@
+[submodule "carnet-stage-serveur-24-25"]
+	path = carnet-stage-serveur-24-25
+	url = https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2025-s4/sae-4a/team-09/carnet-stage-serveur-24-25.git
+[submodule "carnet_stage_client_24_25"]
+	path = carnet_stage_client_24_25
+	url = https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2025-s4/sae-4a/team-09/carnet_stage_client_24_25.git
