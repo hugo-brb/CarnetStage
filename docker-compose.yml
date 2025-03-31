@@ -1,0 +1,22 @@
+services:
+    backoffice:
+        build:
+            context: ./carnet-stage-server-24-25
+            dockerfile: Dockerfile
+        container_name: backoffice
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./carnet-stage-server-24-25:/var/www/html
+        depends_on:
+            - db
+
+    db:
+        image: postgres:latest
+        container_name: db
+        environment:
+            POSTGRES_USER: app-stages
+            POSTGRES_PASSWORD: app-stages
+            POSTGRES_DB: stage_db
+        ports:
+            - "5432:5432"
