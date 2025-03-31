@@ -1,0 +1,10 @@
+# Utiliser une image de base officielle de PostgreSQL
+FROM postgres:13
+
+# Définir les variables d'environnement pour la base de données
+ENV POSTGRES_USER=app-stages
+ENV POSTGRES_PASSWORD=app-stages
+ENV POSTGRES_DB=stage_db
+
+# Exposer le port de la base de données
+EXPOSE 5432
