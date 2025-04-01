@@ -1,9 +1,5 @@
 # CarnetStage
 
-Enfaite c'est un carnet mais un carnet de stage
-
-# Setup du Projet avec Docker
-
 ## Prérequis
 
 Avant de commencer, assurez-vous d'avoir installé les outils suivants :
@@ -25,7 +21,7 @@ cd carnet-stage
 
 ### 2. Vérifier le fichier `.env`
 
-Le fichier `.env` contient les variables d'environnement nécessaires pour configurer votre application Symfony et votre base de données. Vérifiez qu'il est bien présent dans le répertoire `carnet-stage-server-24-25/`.
+Le fichier `.env` contient les variables d'environnement nécessaires pour configurer l'application Symfony et la base de données. Vérifiez qu'il est bien présent dans le répertoire `carnet-stage-server-24-25/`.
 
 Si ce fichier n'est pas présent, créez-en un à partir de l'exemple suivant :
 
@@ -50,7 +46,7 @@ CORS_ALLOW_ORIGIN=*
 
 ### 3. Construire et démarrer les conteneurs Docker
 
-Dans le répertoire carnet-stage-serveur-24-25/, utilisez la commande suivante pour construire l'image Docker et démarrer les services définis dans `docker-compose.yml` :
+Dans le répertoire `carnet-stage-serveur-24-25/`, utilisez la commande suivante pour construire l'image Docker et démarrer les services définis dans `docker-compose.yml` :
 
 ```bash
 docker-compose up --build -d
@@ -81,17 +77,29 @@ docker-compose exec backoffice php bin/console doctrine:migrations:migrate --no-
 
 Cela appliquera les migrations pour mettre à jour la base de données à la dernière version.
 
-### 5.Bis Remplir la base (si besoin)
+### 5.Bis Remplir la base
 
-Si la base de données est incomplète, vous pouvez forcer son remplissage en exécutant la commande suivante :
+Executez la commande suivante :
 
 ```bash
-docker-compose exec -T db psql -U app-stages -d stage_db < dump_BD.sql
+docker-compose exec db psql -U app-stages -d stage_db -c "SELECT * FROM compte_etudiant;"
+```
+
+Si cette commande vous retourne un tableau d'utilisateurs non vide alors vous pouvez directement passer à l'étape 6, sinon cela veut dire que la base de données est incomplète, vous pouvez forcer son remplissage en exécutant la commande suivante :
+
+```bash
+docker-compose exec -T db psql -U app-stages -d stage_db < dump_INSERT.sql
+```
+
+Relancer les conteneur :
+```bash
+docker-compose down
+docker-compose up --build -d
 ```
 
 ### 6. Vérifier l'application
 
-L'application Symfony devrait maintenant être accessible sur [http://localhost:8000](http://localhost:8000) si vous exécutez Docker localement.
+L'application Symfony devrait maintenant être accessible sur [http://localhost:8000](http://localhost:8000).
 
 ### 7. Pour arrêter les conteneurs Docker
 
@@ -125,4 +133,4 @@ docker-compose up --build -d
 
 ## Contact
 
-Pour toute question concernant le projet, contactez l'équipe technique.
+Pour toute question concernant le projet, contactez l'équipe 9.
