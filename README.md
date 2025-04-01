@@ -50,7 +50,7 @@ CORS_ALLOW_ORIGIN=*
 
 ### 3. Construire et démarrer les conteneurs Docker
 
-Dans le répertoire racine du projet, utilisez la commande suivante pour construire l'image Docker et démarrer les services définis dans `docker-compose.yml` :
+Dans le répertoire carnet-stage-serveur-24-25/, utilisez la commande suivante pour construire l'image Docker et démarrer les services définis dans `docker-compose.yml` :
 
 ```bash
 docker-compose up --build -d
@@ -80,6 +80,14 @@ docker-compose exec backoffice php bin/console doctrine:migrations:migrate --no-
 ```
 
 Cela appliquera les migrations pour mettre à jour la base de données à la dernière version.
+
+### 5.Bis Remplir la base (si besoin)
+
+Si la base de données est incomplète, vous pouvez forcer son remplissage en exécutant la commande suivante :
+
+```bash
+docker-compose exec -T db psql -U app-stages -d stage_db < dump_BD.sql
+```
 
 ### 6. Vérifier l'application
 
