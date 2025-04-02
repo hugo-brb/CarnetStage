@@ -16,12 +16,12 @@ Cloner le projet à partir du dépôt Git :
 
 ```bash
 git clone --recursive https://github.com/hugo-brb/CarnetStage.git
-cd carnet-stage
+cd CarnetStage
 ```
 
 ### 2. Vérifier le fichier `.env`
 
-Le fichier `.env` contient les variables d'environnement nécessaires pour configurer l'application Symfony et la base de données. Vérifiez qu'il est bien présent dans le répertoire `carnet-stage-server-24-25/`.
+Dans le répertoire `carnet-stage-server-24-25/`, vérifiez que le fichier `.env` contient les variables d'environnement nécessaires pour configurer l'application Symfony et la base de données.
 
 Si ce fichier n'est pas présent, créez-en un à partir de l'exemple suivant :
 
@@ -42,6 +42,9 @@ MAILER_DSN=null://null
 
 # Configuration de CORS
 CORS_ALLOW_ORIGIN=*
+
+#pour la migration de la database
+MESSENGER_TRANSPORT_DSN=doctrine://default
 ```
 
 ### 3. Construire et démarrer les conteneurs Docker
