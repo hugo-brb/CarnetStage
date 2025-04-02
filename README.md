@@ -94,6 +94,7 @@ Si cette commande vous retourne un tableau d'utilisateurs non vide alors vous po
 ```bash
 docker-compose exec db psql -U app-stages -d stage_db -c "SET session_replication_role = 'replica';"
 docker-compose exec -T db psql -U app-stages -d stage_db < dump_INSERT.sql
+docker-compose exec -T db psql -U app-stages -d stage_db < dump_INSERT.sql
 docker-compose exec db psql -U app-stages -d stage_db -c "SET session_replication_role = 'origin';"
 ```
 
