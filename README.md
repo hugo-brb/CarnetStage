@@ -49,6 +49,7 @@ MESSENGER_TRANSPORT_DSN=doctrine://default
 
 ### 3. Construire et démarrer les conteneurs Docker
 
+Assurer vous d'avoir Docker Desktop lancé sur votre pc
 Dans le répertoire `carnet-stage-serveur-24-25/`, utilisez la commande suivante pour construire l'image Docker et démarrer les services définis dans `docker-compose.yml` :
 
 ```bash
@@ -91,10 +92,13 @@ docker-compose exec db psql -U app-stages -d stage_db -c "SELECT * FROM compte_e
 Si cette commande vous retourne un tableau d'utilisateurs non vide alors vous pouvez directement passer à l'étape 6, sinon cela veut dire que la base de données est incomplète, vous pouvez forcer son remplissage en exécutant la commande suivante :
 
 ```bash
+docker-compose exec db psql -U app-stages -d stage_db -c "SET session_replication_role = 'replica';"
 docker-compose exec -T db psql -U app-stages -d stage_db < dump_INSERT.sql
+docker-compose exec db psql -U app-stages -d stage_db -c "SET session_replication_role = 'origin';"
 ```
 
 Relancer les conteneur :
+
 ```bash
 docker-compose down
 docker-compose up --build -d
