@@ -29,22 +29,23 @@ Si ce fichier n'est pas présent, créez-en un à partir de l'exemple suivant :
 APP_ENV=dev
 APP_DEBUG=true
 APP_SECRET=changeme
-
-# Configuration de la base de données (adaptée à docker-compose.yml)
-DATABASE_URL="pgsql://app-stages:app-stages@db:5432/stage_db"
-
-# Configuration des proxys et hôtes
+######################################################################################################
+A METTRE POUR L'ENVIRONNEMENT DE "PROD"
+#DATABASE_URL="pgsql://app-stages:app-stages@db:5432/stage_db"
+######################################################################################################
+# URL POUR EXECUTER EN LOCAL (SURTOUT POUR LES TESTS)
+# DATABASE_URL="pgsql://app-stages:app-stages@51.83.75.226:5432/stage_db?serverVersion=14&charset=utf8"
+######################################################################################################
 TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR
 TRUSTED_HOSTS=*
-
-# Mailer (à configurer si besoin)
 MAILER_DSN=null://null
-
-# Configuration de CORS
 CORS_ALLOW_ORIGIN=*
-
-#pour la migration de la database
 MESSENGER_TRANSPORT_DSN=doctrine://default
+###> lexik/jwt-authentication-bundle ###
+JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
+JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
+JWT_PASSPHRASE=prankex2025_soupex
+###< lexik/jwt-authentication-bundle ###
 ```
 
 ### 3. Construire et démarrer les conteneurs Docker
@@ -98,18 +99,19 @@ docker-compose exec -T db psql -U app-stages -d stage_db < dump_INSERT.sql
 docker-compose exec db psql -U app-stages -d stage_db -c "SET session_replication_role = 'origin';"
 ```
 
-Relancer les conteneur :
+### 6. Générer une clé lexik 
+
+Pour pouvoir autoriser les communications avec l'application mobile il est vous nécessaire de lancer cette commande.
 
 ```bash
-docker-compose down
-docker-compose up --build -d
+docker exec backoffice php bin/console lexik:jwt:generate-keypair --overwrite
 ```
 
-### 6. Vérifier l'application
+### 7. Vérifier l'application
 
 L'application Symfony devrait maintenant être accessible sur [http://localhost:8000](http://localhost:8000).
 
-### 7. Pour arrêter les conteneurs Docker
+### 8. Pour arrêter les conteneurs Docker
 
 Lorsque vous avez fini, vous pouvez arrêter tous les conteneurs Docker avec :
 
