@@ -25,7 +25,7 @@ Dans le répertoire `carnet-stage-server-24-25/`, vérifiez que le fichier `.env
 
 Si ce fichier n'est pas présent, créez-en un à partir de l'exemple suivant :
 
-```ini
+```.env
 APP_ENV=dev
 APP_DEBUG=true
 APP_SECRET=changeme
