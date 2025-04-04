@@ -69,19 +69,18 @@ Sinon, créez-le avec le contenu suivant :
 APP_ENV=dev
 APP_DEBUG=true
 APP_SECRET=changeme
-
-# Configuration base de données (utilisée en production Docker)
+######################################################################################################
+# A METTRE POUR L'ENVIRONNEMENT DE "PROD"
 DATABASE_URL="pgsql://app-stages:app-stages@db:5432/stage_db"
-
-# Alternative pour exécution locale sans Docker
+######################################################################################################
+# URL POUR EXECUTER LES TESTS EN LOCAL
 # DATABASE_URL="pgsql://app-stages:app-stages@51.83.75.226:5432/stage_db?serverVersion=14&charset=utf8"
-
+######################################################################################################
 TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR
 TRUSTED_HOSTS=*
 MAILER_DSN=null://null
 CORS_ALLOW_ORIGIN=*
 MESSENGER_TRANSPORT_DSN=doctrine://default
-
 ###> lexik/jwt-authentication-bundle ###
 JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
 JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
