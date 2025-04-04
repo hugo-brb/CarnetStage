@@ -30,8 +30,8 @@ APP_ENV=dev
 APP_DEBUG=true
 APP_SECRET=changeme
 ######################################################################################################
-A METTRE POUR L'ENVIRONNEMENT DE "PROD"
-#DATABASE_URL="pgsql://app-stages:app-stages@db:5432/stage_db"
+# A METTRE POUR L'ENVIRONNEMENT DE "PROD"
+DATABASE_URL="pgsql://app-stages:app-stages@db:5432/stage_db"
 ######################################################################################################
 # URL POUR EXECUTER EN LOCAL (SURTOUT POUR LES TESTS)
 # DATABASE_URL="pgsql://app-stages:app-stages@51.83.75.226:5432/stage_db?serverVersion=14&charset=utf8"
